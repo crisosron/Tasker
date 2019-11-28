@@ -19,7 +19,17 @@ class TaskCell: UITableViewCell {
 	func setTask(task: Task){
 		taskTitleLabel.text = task.taskTitle;
 		taskTimeLabel.text = task.taskTime;
-		taskPriorityLabel.text = task.taskPriority;
+		if let priorityValue = task.taskPriority{
+			taskPriorityLabel.text = "Priority: \(priorityValue)";
+		}else{
+			taskPriorityLabel.text = "";
+		}
+		
+		if let priorityColor = task.taskPriorityColor{
+			taskPriorityIndicator.backgroundColor = priorityColor;
+		}else{
+			taskPriorityIndicator.backgroundColor = UIColor.systemBackground;
+		}
 	}
 	
 }

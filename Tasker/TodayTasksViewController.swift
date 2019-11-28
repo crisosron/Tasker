@@ -24,9 +24,12 @@ class TodayTasksViewController: UIViewController {
 	// MARK: A temporary task generator function
 	func createTasks() -> [Task]{
 		var generatedTasks:[Task] = [];
+		let priorityValues: [String] = ["Low", "Medium", "High"];
 		for i in 0...9{
 			let generatedTaskTitle = "Task " + String(i);
-			let task = Task(taskTitle: generatedTaskTitle, timeOfTask: "00:00am - 00:00pm", taskPriority: "Medium");
+			let randomIndex = Int.random(in: 0...3);
+			let randomPriorityValue = randomIndex != 3 ? priorityValues[randomIndex] : nil;
+			let task = Task(taskTitle: generatedTaskTitle, timeOfTask: "00:00am - 00:00pm", taskPriority: randomPriorityValue);
 			generatedTasks.append(task)
 		}
 		
@@ -34,6 +37,7 @@ class TodayTasksViewController: UIViewController {
 	}
 }
 
+// This VC delegates to todayTasksTableView
 extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 	
 	// This VC only has 1 section
