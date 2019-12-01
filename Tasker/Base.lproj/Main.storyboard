@@ -52,9 +52,17 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vK-vp-v4G" customClass="CheckButton" customModule="Tasker" customModuleProvider="target">
+                                                    <rect key="frame" x="271" y="43" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="checkButtonPressed:" destination="RUv-JO-vwX" eventType="touchUpInside" id="AzY-ZK-waS"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="checkButton" destination="7vK-vp-v4G" id="XeZ-0u-Cor"/>
                                             <outlet property="taskPriorityIndicator" destination="Zc8-3i-15h" id="W4u-c9-16x"/>
                                             <outlet property="taskPriorityLabel" destination="14m-Re-tqc" id="EuO-k5-tjp"/>
                                             <outlet property="taskTimeLabel" destination="deR-nX-ukx" id="6oH-8m-hLg"/>

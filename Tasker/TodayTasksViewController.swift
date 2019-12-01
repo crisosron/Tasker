@@ -42,7 +42,7 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 	
 	// This VC only has 1 section
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 1;
+		return 2;
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -15,6 +15,7 @@ class TaskCell: UITableViewCell {
 	@IBOutlet weak var taskTimeLabel: UILabel!
 	@IBOutlet weak var taskPriorityLabel: UILabel!
 	@IBOutlet weak var taskPriorityIndicator: UIButton!
+	@IBOutlet weak var checkButton: CheckButton!
 	
 	func setTask(task: Task){
 		taskTitleLabel.text = task.taskTitle;
@@ -32,4 +33,7 @@ class TaskCell: UITableViewCell {
 		}
 	}
 	
+	@IBAction func checkButtonPressed(_ sender: UIButton) {
+		checkButton.togglePress();
+	}
 }
