@@ -48,13 +48,13 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return todayTasks.count;
+		return section == 0 ? todayTasks.count : completedTasks.count;
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let task = todayTasks[indexPath.row];
 		let taskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell;
-		taskCell.taskCellDelegate = self;
+		taskCell.taskCellDelegate = self; // Makes use of custom TaskCellProtocol protocol
 		taskCell.indexPath = indexPath;
 		taskCell.setTask(task: task);
 		return taskCell;
@@ -65,9 +65,20 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 	}
 }
 
+/**
+	This extension handles the implementation of the methods inside `TaskCellProtocol`
+*/
 extension TodayTasksViewController: TaskCellProtocol{
+	
+	/**
+		Handles the event in which the `CheckButton` associated with a `TaskCell` is tapped. The TaskCell at `indexPath.row` is moved to `completedTasks`
+		Parameter indexPath - IndexPath of the `TaskCell` that corresponds with the tapped `CheckButton`
+	*/
 	func checkOnTaskPressed(indexPath: IndexPath) {
-		print("\(indexPath) has been checked");
+		let completedTask = todayTasks[indexPath.row];
+		completedTasks.append(completedTask);
+		todayTasks.remove(at: indexPath.row);
+		todayTasksTableView.reloadData();
 	}
 	
 }
