@@ -10,6 +10,7 @@ import UIKit
 
 class TodayTasksViewController: UIViewController {
 	var todayTasks: [Task] = [];
+	var completedTasks: [Task] = [];
 	@IBOutlet weak var todayTasksTableView: UITableView!
 	
 	override func viewDidLoad() {
@@ -20,6 +21,7 @@ class TodayTasksViewController: UIViewController {
 		todayTasksTableView.delegate = self;
 		todayTasksTableView.dataSource = self;
 	}
+
 	
 	// MARK: A temporary task generator function
 	func createTasks() -> [Task]{
@@ -52,10 +54,21 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let task = todayTasks[indexPath.row];
 		let taskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell;
+		taskCell.taskCellDelegate = self;
+		taskCell.indexPath = indexPath;
 		taskCell.setTask(task: task);
 		return taskCell;
 	}
 	
+	func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+		section == 0 ? "Today's Tasks" : "Completed Tasks"
+	}
+}
+
+extension TodayTasksViewController: TaskCellProtocol{
+	func checkOnTaskPressed(indexPath: IndexPath) {
+		print("\(indexPath) has been checked");
+	}
 	
 }
 

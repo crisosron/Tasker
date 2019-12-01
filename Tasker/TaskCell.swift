@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+protocol TaskCellProtocol{
+	func checkOnTaskPressed(indexPath: IndexPath);
+}
 class TaskCell: UITableViewCell {
 	
 	// Sub views within this cell
@@ -16,6 +18,8 @@ class TaskCell: UITableViewCell {
 	@IBOutlet weak var taskPriorityLabel: UILabel!
 	@IBOutlet weak var taskPriorityIndicator: UIButton!
 	@IBOutlet weak var checkButton: CheckButton!
+	var taskCellDelegate: TaskCellProtocol?
+	var indexPath: IndexPath?
 	
 	func setTask(task: Task){
 		taskTitleLabel.text = task.taskTitle;
@@ -33,7 +37,11 @@ class TaskCell: UITableViewCell {
 		}
 	}
 	
-	@IBAction func checkButtonPressed(_ sender: UIButton) {
-		checkButton.togglePress();
+	@IBAction func checkButtonPressed(_ sender: CheckButton) {
+		sender.togglePress();
+		taskCellDelegate?.checkOnTaskPressed(indexPath: self.indexPath!);
 	}
+	
+	
+	
 }
