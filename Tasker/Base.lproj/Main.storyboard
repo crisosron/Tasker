@@ -73,7 +73,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Today" image="tray" catalog="system" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Today" image="todo" selectedImage="todo" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="todayTasksTableView" destination="cq9-Lg-FC9" id="UnW-PI-RHb"/>
                     </connections>
@@ -82,7 +82,7 @@
             </objects>
             <point key="canvasLocation" x="-1420.289855072464" y="583.92857142857144"/>
         </scene>
-        <!--Second-->
+        <!--This Week-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Tasker" customModuleProvider="target" sceneMemberID="viewController">
@@ -92,13 +92,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="This Week" image="week" selectedImage="week" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-759" y="585"/>
         </scene>
-        <!--Item-->
+        <!--Between Days-->
         <scene sceneID="uJt-tP-sZT">
             <objects>
                 <viewController id="oXR-Ul-h7R" sceneMemberID="viewController">
@@ -108,13 +108,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Ype-Bo-dvV"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="iZD-q5-Qx1"/>
+                    <tabBarItem key="tabBarItem" title="Between Days" image="calendar" catalog="system" selectedImage="calendar" id="iZD-q5-Qx1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zx1-Wr-tiN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-68" y="585"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="AHg-UN-FW9">
             <objects>
                 <viewController id="av2-ke-64w" sceneMemberID="viewController">
@@ -124,7 +124,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="LWv-qg-R5C"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Z8V-Tu-1WO"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" selectedImage="settings" id="Z8V-Tu-1WO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U86-VN-JsO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -152,7 +152,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="second" width="30" height="30"/>
-        <image name="tray" catalog="system" width="64" height="44"/>
+        <image name="calendar" catalog="system" width="64" height="52"/>
+        <image name="settings" width="25" height="25"/>
+        <image name="todo" width="25" height="25"/>
+        <image name="week" width="25" height="25"/>
     </resources>
 </document>
