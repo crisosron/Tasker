@@ -18,12 +18,20 @@ class TaskCell: UITableViewCell {
 	@IBOutlet weak var taskPriorityLabel: UILabel!
 	@IBOutlet weak var taskPriorityIndicator: UIButton!
 	@IBOutlet weak var checkButton: CheckButton!
+	
+	// Used for TaskCellProtocol
 	var taskCellDelegate: TaskCellProtocol?
 	var indexPath: IndexPath?
 	
+	/**
+		Sets the `Task` object associated with this `TaskCell`
+		Parameter task - The` Task` objected to be associated with this `TaskCell`
+	*/
 	func setTask(task: Task){
 		taskTitleLabel.text = task.taskTitle;
 		taskTimeLabel.text = task.taskTime;
+		
+		// Displaying priority indication and text (if a priority value for the task has been set)
 		if let priorityValue = task.taskPriority{
 			taskPriorityLabel.text = "Priority: \(priorityValue)";
 		}else{
@@ -37,6 +45,9 @@ class TaskCell: UITableViewCell {
 		}
 	}
 	
+	/**
+		Invokes the `checkOnTaskPressed` function declared `TaskCellProtocol`
+	*/
 	@IBAction func checkButtonPressed(_ sender: CheckButton) {
 		sender.togglePress();
 		taskCellDelegate?.checkOnTaskPressed(indexPath: self.indexPath!);

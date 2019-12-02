@@ -9,21 +9,20 @@
 import UIKit
 
 class TodayTasksViewController: UIViewController {
-	var todayTasks: [Task] = [];
+	var tasksPendingCompletion: [Task] = [];
 	var completedTasks: [Task] = [];
 	@IBOutlet weak var todayTasksTableView: UITableView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		todayTasks = createTasks();
+		tasksPendingCompletion = createTasks();
 		
 		// Setting the delegate and dataSource to be used by the table view to be self (see extension)
 		todayTasksTableView.delegate = self;
 		todayTasksTableView.dataSource = self;
 	}
-
 	
-	// MARK: A temporary task generator function
+	//A temporary task generator function
 	func createTasks() -> [Task]{
 		var generatedTasks:[Task] = [];
 		let priorityValues: [String] = ["Low", "Medium", "High"];
@@ -37,6 +36,16 @@ class TodayTasksViewController: UIViewController {
 		
 		return generatedTasks;
 	}
+	
+	//MARK: IBActions
+	@IBAction func addButtonTapped(_ sender: UIButton) {
+		print("Add button tapped");
+	}
+	
+	
+	
+	
+	
 }
 
 // This VC delegates to todayTasksTableView
@@ -44,15 +53,20 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 	
 	// This VC only has 1 section
 	func numberOfSections(in tableView: UITableView) -> Int {
-		return 2;
+		if(completedTasks.count == 0){
+			return 1;
+		}
+		else{
+			return 2;
+		}
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return section == 0 ? todayTasks.count : completedTasks.count;
+		return section == 0 ? tasksPendingCompletion.count : completedTasks.count;
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let task = todayTasks[indexPath.row];
+		let task = tasksPendingCompletion[indexPath.row];
 		let taskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell;
 		taskCell.taskCellDelegate = self; // Makes use of custom TaskCellProtocol protocol
 		taskCell.indexPath = indexPath;
@@ -60,7 +74,7 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 		return taskCell;
 	}
 	
-	func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		section == 0 ? "Today's Tasks" : "Completed Tasks"
 	}
 }
@@ -75,10 +89,9 @@ extension TodayTasksViewController: TaskCellProtocol{
 		Parameter indexPath - IndexPath of the `TaskCell` that corresponds with the tapped `CheckButton`
 	*/
 	func checkOnTaskPressed(indexPath: IndexPath) {
-		let completedTask = todayTasks[indexPath.row];
-		completedTasks.append(completedTask);
-		todayTasks.remove(at: indexPath.row);
-		todayTasksTableView.reloadData();
+		print("Completed task at \(indexPath)");
+		print("Completed task title: \(tasksPendingCompletion[indexPath.row].taskTitle)");
+
 	}
 	
 }
