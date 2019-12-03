@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8726BED62395D80B00AE236A /* DateInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726BED52395D80B00AE236A /* DateInputField.swift */; };
+		8726BED82395D82600AE236A /* TimeInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726BED72395D82600AE236A /* TimeInputField.swift */; };
+		8726BEDC2395DF7900AE236A /* SelectOptionInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726BEDB2395DF7900AE236A /* SelectOptionInputField.swift */; };
+		8726BEDE2395E43100AE236A /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726BEDD2395E43100AE236A /* AddTaskViewController.swift */; };
 		8760761E23933F6200D6BC84 /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8760761D23933F6200D6BC84 /* CheckButton.swift */; };
 		87B172C7238F604300D36B6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B172C6238F604300D36B6E /* AppDelegate.swift */; };
 		87B172C9238F604300D36B6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B172C8238F604300D36B6E /* SceneDelegate.swift */; };
@@ -20,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8726BED52395D80B00AE236A /* DateInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateInputField.swift; sourceTree = "<group>"; };
+		8726BED72395D82600AE236A /* TimeInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInputField.swift; sourceTree = "<group>"; };
+		8726BEDB2395DF7900AE236A /* SelectOptionInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectOptionInputField.swift; sourceTree = "<group>"; };
+		8726BEDD2395E43100AE236A /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		8760761D23933F6200D6BC84 /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
 		87B172C3238F604300D36B6E /* Tasker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B172C6238F604300D36B6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +83,10 @@
 				87B172DC238F62C600D36B6E /* TaskCell.swift */,
 				87B172DE238F637300D36B6E /* Task.swift */,
 				8760761D23933F6200D6BC84 /* CheckButton.swift */,
+				8726BED52395D80B00AE236A /* DateInputField.swift */,
+				8726BED72395D82600AE236A /* TimeInputField.swift */,
+				8726BEDB2395DF7900AE236A /* SelectOptionInputField.swift */,
+				8726BEDD2395E43100AE236A /* AddTaskViewController.swift */,
 			);
 			path = Tasker;
 			sourceTree = "<group>";
@@ -151,10 +163,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				87B172CD238F604300D36B6E /* SecondViewController.swift in Sources */,
+				8726BED62395D80B00AE236A /* DateInputField.swift in Sources */,
+				8726BEDC2395DF7900AE236A /* SelectOptionInputField.swift in Sources */,
 				87B172CB238F604300D36B6E /* TodayTasksViewController.swift in Sources */,
 				87B172C7238F604300D36B6E /* AppDelegate.swift in Sources */,
 				87B172C9238F604300D36B6E /* SceneDelegate.swift in Sources */,
+				8726BEDE2395E43100AE236A /* AddTaskViewController.swift in Sources */,
 				87B172DF238F637300D36B6E /* Task.swift in Sources */,
+				8726BED82395D82600AE236A /* TimeInputField.swift in Sources */,
 				87B172DD238F62C600D36B6E /* TaskCell.swift in Sources */,
 				8760761E23933F6200D6BC84 /* CheckButton.swift in Sources */,
 			);

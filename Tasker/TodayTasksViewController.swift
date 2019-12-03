@@ -42,10 +42,6 @@ class TodayTasksViewController: UIViewController {
 		print("Add button tapped");
 	}
 	
-	
-	
-	
-	
 }
 
 // This VC delegates to todayTasksTableView
