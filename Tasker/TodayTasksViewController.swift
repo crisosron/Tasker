@@ -22,7 +22,7 @@ class TodayTasksViewController: UIViewController {
 		todayTasksTableView.dataSource = self;
 	}
 	
-	//A temporary task generator function
+	//A temporary task ge nerator function
 	func createTasks() -> [Task]{
 		var generatedTasks:[Task] = [];
 		let priorityValues: [String] = ["Low", "Medium", "High"];
@@ -81,8 +81,8 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 extension TodayTasksViewController: TaskCellProtocol{
 	
 	/**
-		Handles the event in which the `CheckButton` associated with a `TaskCell` is tapped. The TaskCell at `indexPath.row` is moved to `completedTasks`
-		Parameter indexPath - IndexPath of the `TaskCell` that corresponds with the tapped `CheckButton`
+	Handles the event in which the `CheckButton` associated with a `TaskCell` is tapped. The TaskCell at `indexPath.row` is moved to `completedTasks`
+	Parameter indexPath - IndexPath of the `TaskCell` that corresponds with the tapped `CheckButton`
 	*/
 	func checkOnTaskPressed(indexPath: IndexPath) {
 		print("Completed task at \(indexPath)");

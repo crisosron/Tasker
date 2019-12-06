@@ -9,7 +9,7 @@
 import UIKit
 
 /**
-	Represents a toggling button within a TaskCell object. This serves the purpose of indicating that a task has been completed
+* Represents a toggling button within a TaskCell object. This serves the purpose of indicating that a task has been completed
 */
 class CheckButton: UIButton {
 	var toggledOn = false;
@@ -27,7 +27,7 @@ class CheckButton: UIButton {
 	}
 	
 	/**
-		Toggles the button on or off, changing the background of the button in accordance to the new state of this CheckButton
+	* Toggles the button on or off, changing the background of the button in accordance to the new state of this CheckButton
 	*/
 	func togglePress(){
 		toggledOn = !toggledOn;
