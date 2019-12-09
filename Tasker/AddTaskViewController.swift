@@ -14,6 +14,7 @@ class AddTaskViewController: UIViewController {
 	@IBOutlet weak var startTimeInputField: UITextField!
 	@IBOutlet weak var endTimeInputField: UITextField!
 	@IBOutlet weak var dateInputField: UITextField!
+	@IBOutlet weak var taskTitleInputField: UITextField!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,10 +89,28 @@ class AddTaskViewController: UIViewController {
 		}
 	}
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if(segue.identifier == "addTaskToTodayTasks"){
+			self.dismiss(animated: true) {
+
+				let todayTasksVC = segue.destination as! TodayTasksViewController
+				
+				// TODO: Verify that there is a task title before creating the new Task object (do a guard check here!)
+				let title = self.taskTitleInputField.text
+				let startingTime = self.startTimeInputField.text
+				let endingTime = self.endTimeInputField.text
+				let priority = self.priorityInputField.text
+				
+				let newTask = Task(taskTitle: title!, startingAt: startingTime!, endingAt: endingTime, withPriority: priority)
+				todayTasksVC.addTask(task: newTask)
+			}
+		}
+	}
+	
 	//MARK: IBActions
 	@IBAction func addTaskPressed(_ sender: UIButton) {
-		print("Add Task Pressed")
-		// TODO: Perform segue back to TodayTasksViewController
+		performSegue(withIdentifier: "addTaskToTodayTasks", sender: sender)
+		
 	}
 	
 }

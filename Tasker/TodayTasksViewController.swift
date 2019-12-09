@@ -30,11 +30,15 @@ class TodayTasksViewController: UIViewController {
 			let generatedTaskTitle = "Task " + String(i);
 			let randomIndex = Int.random(in: 0...3);
 			let randomPriorityValue = randomIndex != 3 ? priorityValues[randomIndex] : nil;
-			let task = Task(taskTitle: generatedTaskTitle, timeOfTask: "00:00am - 00:00pm", taskPriority: randomPriorityValue);
+			let task = Task(taskTitle: generatedTaskTitle, startingAt: "00:00am", endingAt: "00:00pm", withPriority: randomPriorityValue)
 			generatedTasks.append(task)
 		}
 		
 		return generatedTasks;
+	}
+	
+	func addTask(task: Task){
+		print("Need to add new task in TodayTasksVC");
 	}
 	
 	//MARK: IBActions

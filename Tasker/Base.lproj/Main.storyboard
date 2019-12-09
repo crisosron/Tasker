@@ -125,6 +125,8 @@
                         <outlet property="endTimeInputField" destination="5hJ-8f-5Y5" id="C0I-KG-uOo"/>
                         <outlet property="priorityInputField" destination="eZP-YD-rvM" id="Ift-V5-p5N"/>
                         <outlet property="startTimeInputField" destination="lMl-lj-osg" id="s8D-ke-ymI"/>
+                        <outlet property="taskTitleInputField" destination="KT8-44-f2R" id="Hw4-yO-38S"/>
+                        <segue destination="9pv-A4-QxB" kind="showDetail" identifier="addTaskToTodayTasks" id="i56-Bf-zd0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jhl-eO-Wuz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -136,11 +138,11 @@
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="TodayTasksViewController" customModule="Tasker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cq9-Lg-FC9">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="taskCell" rowHeight="117" id="RUv-JO-vwX" customClass="TaskCell" customModule="Tasker" customModuleProvider="target">
@@ -196,7 +198,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnX-LB-ow5">
-                                <rect key="frame" x="356" y="755" width="48" height="48"/>
+                                <rect key="frame" x="356" y="750" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="v0R-Ae-sAl"/>
                                     <constraint firstAttribute="height" constant="48" id="vcW-0z-kev"/>
@@ -220,6 +222,7 @@
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Today" image="todo" selectedImage="todo" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" id="Vo2-UO-GtY"/>
                     <connections>
                         <outlet property="todayTasksTableView" destination="cq9-Lg-FC9" id="UnW-PI-RHb"/>
                     </connections>
@@ -304,4 +307,7 @@
         <image name="todo" width="25" height="25"/>
         <image name="week" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="i56-Bf-zd0"/>
+    </inferredMetricsTieBreakers>
 </document>

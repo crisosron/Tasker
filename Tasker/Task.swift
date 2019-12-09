@@ -11,14 +11,16 @@ import UIKit;
 
 class Task{
 	var taskTitle: String;
-	var taskTime: String;
+	var startTime: String;
+	var endTime: String?
 	var taskPriority: String?;
 	var taskPriorityColor: UIColor?;
 	
-	init(taskTitle: String, timeOfTask taskTime: String, taskPriority: String?){
-		self.taskTitle = taskTitle;
-		self.taskTime = taskTime;
-		self.taskPriority = taskPriority;
+	init(taskTitle: String, startingAt startTime: String, endingAt endTime: String?, withPriority priority: String?){
+		self.taskTitle = taskTitle
+		self.startTime = startTime
+		self.endTime = endTime
+		self.taskPriority = priority
 		
 		// Determines the color of the task
 		if let priority = taskPriority{ // If there is a priority value....
