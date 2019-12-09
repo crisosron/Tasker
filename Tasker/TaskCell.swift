@@ -24,8 +24,8 @@ class TaskCell: UITableViewCell {
 	var indexPath: IndexPath?
 	
 	/**
-		Sets the `Task` object associated with this `TaskCell`
-		Parameter task - The` Task` objected to be associated with this `TaskCell`
+	* Sets the `Task` object associated with this `TaskCell`
+	* Parameter task - The` Task` objected to be associated with this `TaskCell`
 	*/
 	func setTask(task: Task){
 		taskTitleLabel.text = task.taskTitle;
@@ -46,13 +46,10 @@ class TaskCell: UITableViewCell {
 	}
 	
 	/**
-		Invokes the `checkOnTaskPressed` function declared `TaskCellProtocol`
+	Invokes the `checkOnTaskPressed` function declared `TaskCellProtocol`
 	*/
 	@IBAction func checkButtonPressed(_ sender: CheckButton) {
 		sender.togglePress();
 		taskCellDelegate?.checkOnTaskPressed(indexPath: self.indexPath!);
 	}
-	
-	
-	
 }

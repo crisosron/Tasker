@@ -18,18 +18,27 @@ class AddTaskViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
+		// Configuring the input fields to be custom input fields
 		startTimeInputField.inputView = DateTimeInputField(mode: UIDatePicker.Mode.time, target: self, field: "startTime");
 		endTimeInputField.inputView = DateTimeInputField(mode: UIDatePicker.Mode.time, target: self, field:"endTime");
 		dateInputField.inputView = DateTimeInputField(mode: UIDatePicker.Mode.date, target: self, field: "date");
 		priorityInputField.inputView = SelectOptionInputField(options: ["None", "Low", "Medium", "High"], textField: priorityInputField);
 		
+		// Setting up the tool bar for the input fields
 		let toolBar = UIToolbar().createToolBar(selector: #selector(doneButtonOnDatePickerPressed(sender:)))
 		startTimeInputField.inputAccessoryView = toolBar
 		endTimeInputField.inputAccessoryView = toolBar
 		dateInputField.inputAccessoryView = toolBar
 		
-		// TODO: Give initial displayed values in timeInputField and dateInputField
-		// TODO: Need to find a way to dismiss the date picker fields
+		// Setting up default values inside the input fields
+		let date = Date()
+		startTimeInputField.text = DateFormatter.twelveHourString(with: date)
+		
+		// Setting up default date on dateInputField
+		let dateFormatter = DateFormatter();
+		dateFormatter.dateFormat = "dd/MM/yyyy"
+		dateInputField.text = dateFormatter.string(from: date)
+		
     }
 	
 	//MARK: Selector functions
@@ -65,11 +74,8 @@ class AddTaskViewController: UIViewController {
 	
 	func setTimeOnInputField(datePicker: DateTimeInputField){
 		
-		// Splitting datePicker.date into individual components to obtain the time selected in the datePicker
-		let components = Calendar.current.dateComponents([.hour, .minute], from: datePicker.date)
-		
 		// Setting timeInputField to display the selected time
-		let selectedTime = "\(components.hour!):\(components.minute!)"
+		let selectedTime = DateFormatter.twelveHourString(with: datePicker.date)
 		
 		if let fieldToModify = datePicker.field{
 			if(fieldToModify == "startTime"){
@@ -88,4 +94,13 @@ class AddTaskViewController: UIViewController {
 		// TODO: Perform segue back to TodayTasksViewController
 	}
 	
+}
+
+extension DateFormatter{
+	static func twelveHourString(with time: Date) -> String{
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "h:mm a"
+		let formattedTime = dateFormatter.string(from: time)
+		return formattedTime
+	}
 }
