@@ -16,6 +16,8 @@ class AddTaskViewController: UIViewController {
 	@IBOutlet weak var dateInputField: UITextField!
 	@IBOutlet weak var taskTitleInputField: UITextField!
 	
+	var task: Task?
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -31,6 +33,22 @@ class AddTaskViewController: UIViewController {
 		endTimeInputField.inputAccessoryView = toolBar
 		dateInputField.inputAccessoryView = toolBar
 		
+		if task != nil{
+			loadTask()
+		}else{
+			loadDefaults()
+		}
+		
+    }
+	
+	func loadTask(){
+		taskTitleInputField.text = task?.taskTitle
+		startTimeInputField.text = task?.startTime
+		endTimeInputField.text = task?.endTime
+		priorityInputField.text = task?.taskPriority
+	}
+	
+	func loadDefaults(){
 		// Setting up default values inside the input fields
 		let date = Date()
 		startTimeInputField.text = DateFormatter.twelveHourString(with: date)
@@ -39,8 +57,7 @@ class AddTaskViewController: UIViewController {
 		let dateFormatter = DateFormatter();
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 		dateInputField.text = dateFormatter.string(from: date)
-		
-    }
+	}
 	
 	//MARK: Selector functions
 	/**
@@ -90,29 +107,14 @@ class AddTaskViewController: UIViewController {
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if(segue.identifier == "addTaskToTodayTasks"){
-			self.dismiss(animated: true) {
-
-				let todayTasksVC = segue.destination as! TodayTasksViewController
-				
-				// TODO: Verify that there is a task title before creating the new Task object (do a guard check here!)
-				let title = self.taskTitleInputField.text
-				let startingTime = self.startTimeInputField.text
-				let endingTime = self.endTimeInputField.text
-				let priority = self.priorityInputField.text
-				
-				let newTask = Task(taskTitle: title!, startingAt: startingTime!, endingAt: endingTime, withPriority: priority)
-				todayTasksVC.addTask(task: newTask)
-			}
-		}
+		
 	}
 	
 	//MARK: IBActions
 	@IBAction func addTaskPressed(_ sender: UIButton) {
-		performSegue(withIdentifier: "addTaskToTodayTasks", sender: sender)
+		performSegue(withIdentifier: "addTaskToTodayTasks", sender: self)
 		
 	}
-	
 }
 
 extension DateFormatter{

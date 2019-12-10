@@ -11,8 +11,9 @@ import UIKit
 class TodayTasksViewController: UIViewController {
 	var tasksPendingCompletion: [Task] = [];
 	var completedTasks: [Task] = [];
-	@IBOutlet weak var todayTasksTableView: UITableView!
+	var newestTask: Task?
 	
+	@IBOutlet weak var todayTasksTableView: UITableView!
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tasksPendingCompletion = createTasks();
@@ -22,7 +23,7 @@ class TodayTasksViewController: UIViewController {
 		todayTasksTableView.dataSource = self;
 	}
 	
-	//A temporary task ge nerator function
+	//A temporary task generator function
 	func createTasks() -> [Task]{
 		var generatedTasks:[Task] = [];
 		let priorityValues: [String] = ["Low", "Medium", "High"];
@@ -30,21 +31,20 @@ class TodayTasksViewController: UIViewController {
 			let generatedTaskTitle = "Task " + String(i);
 			let randomIndex = Int.random(in: 0...3);
 			let randomPriorityValue = randomIndex != 3 ? priorityValues[randomIndex] : nil;
-			let task = Task(taskTitle: generatedTaskTitle, startingAt: "00:00am", endingAt: "00:00pm", withPriority: randomPriorityValue)
+			let task = Task(taskTitle: generatedTaskTitle, startingAt: "00:00 AM", endingAt: "00:00 PM", withPriority: randomPriorityValue)
 			generatedTasks.append(task)
 		}
 		
 		return generatedTasks;
 	}
 	
-	func addTask(task: Task){
-		print("Need to add new task in TodayTasksVC");
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if(segue.identifier == "todayTasksToAddTask"){
+			let addTaskVC = segue.destination as! AddTaskViewController
+			addTaskVC.task = sender as? Task
+		}
 	}
 	
-	//MARK: IBActions
-	@IBAction func addButtonTapped(_ sender: UIButton) {
-		print("Add button tapped");
-	}
 	
 }
 
@@ -76,6 +76,11 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		section == 0 ? "Today's Tasks" : "Completed Tasks"
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let selectedTask = tasksPendingCompletion[indexPath.row]
+		performSegue(withIdentifier: "todayTasksToAddTask", sender: selectedTask)
 	}
 }
 
