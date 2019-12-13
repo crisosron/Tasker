@@ -106,14 +106,16 @@ class AddTaskViewController: UIViewController {
 		}
 	}
 	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		
-	}
-	
 	//MARK: IBActions
 	@IBAction func addTaskPressed(_ sender: UIButton) {
-		performSegue(withIdentifier: "addTaskToTodayTasks", sender: self)
-		
+		// Reminder: The add task button is linked to an unwind action segue that dismisses this VC and leads back to TodayTasksVC (see unwind method in TodayTasksVC)
+		let taskTitle = taskTitleInputField.text
+		if(taskTitle == "") {return} // TODO: Do notification here
+		let taskStartTime = startTimeInputField.text
+		let taskEndTime = endTimeInputField.text
+		let priority = priorityInputField.text
+		let task = Task(taskTitle: taskTitle!, startingAt: taskStartTime!, endingAt: taskEndTime, withPriority: priority)
+		TaskController.addTask(task)
 	}
 }
 

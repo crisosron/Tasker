@@ -9,43 +9,38 @@
 import UIKit
 
 class TodayTasksViewController: UIViewController {
-	var tasksPendingCompletion: [Task] = [];
 	var completedTasks: [Task] = [];
 	var newestTask: Task?
 	
 	@IBOutlet weak var todayTasksTableView: UITableView!
+	
+	//MARK: Overridden functions
 	override func viewDidLoad() {
-		super.viewDidLoad()
-		tasksPendingCompletion = createTasks();
+		super.viewDidLoad();
 		
 		// Setting the delegate and dataSource to be used by the table view to be self (see extension)
-		todayTasksTableView.delegate = self;
-		todayTasksTableView.dataSource = self;
+		todayTasksTableView.delegate = self
+		todayTasksTableView.dataSource = self
 	}
 	
-	//A temporary task generator function
-	func createTasks() -> [Task]{
-		var generatedTasks:[Task] = [];
-		let priorityValues: [String] = ["Low", "Medium", "High"];
-		for i in 0...9{
-			let generatedTaskTitle = "Task " + String(i);
-			let randomIndex = Int.random(in: 0...3);
-			let randomPriorityValue = randomIndex != 3 ? priorityValues[randomIndex] : nil;
-			let task = Task(taskTitle: generatedTaskTitle, startingAt: "00:00 AM", endingAt: "00:00 PM", withPriority: randomPriorityValue)
-			generatedTasks.append(task)
-		}
-		
-		return generatedTasks;
+	override func viewDidAppear(_ animated: Bool) {
+		todayTasksTableView.reloadData()
 	}
 	
+	@IBAction func unwindToTodayTasksVC(unwindSegue: UIStoryboardSegue){
+		// Important Note: For some reason, todayTasksTableView is nil when it is accessed outside of methods
+		// defined by UIViewController. Because of this, when the user unwinds from the AddTaskVC, we need to invoke
+		// viewDidAppear on this VC so we can conduct operations on todayTasksTableView inside viewDidAppear
+		self.viewDidAppear(true)
+	}
+	
+	//MARK: Segue to AddTaskVC
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if(segue.identifier == "todayTasksToAddTask"){
 			let addTaskVC = segue.destination as! AddTaskViewController
 			addTaskVC.task = sender as? Task
 		}
 	}
-	
-	
 }
 
 // This VC delegates to todayTasksTableView
@@ -53,20 +48,15 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 	
 	// This VC only has 1 section
 	func numberOfSections(in tableView: UITableView) -> Int {
-		if(completedTasks.count == 0){
-			return 1;
-		}
-		else{
-			return 2;
-		}
+		return 1
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return section == 0 ? tasksPendingCompletion.count : completedTasks.count;
+		return TaskController.tasksPendingCompletion.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let task = tasksPendingCompletion[indexPath.row];
+		let task = TaskController.tasksPendingCompletion[indexPath.row];
 		let taskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell;
 		taskCell.taskCellDelegate = self; // Makes use of custom TaskCellProtocol protocol
 		taskCell.indexPath = indexPath;
@@ -75,11 +65,11 @@ extension TodayTasksViewController: UITableViewDataSource, UITableViewDelegate{
 	}
 	
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		section == 0 ? "Today's Tasks" : "Completed Tasks"
+		return "Today's Tasks"
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let selectedTask = tasksPendingCompletion[indexPath.row]
+		let selectedTask = TaskController.tasksPendingCompletion[indexPath.row]
 		performSegue(withIdentifier: "todayTasksToAddTask", sender: selectedTask)
 	}
 }
@@ -95,7 +85,7 @@ extension TodayTasksViewController: TaskCellProtocol{
 	*/
 	func checkOnTaskPressed(indexPath: IndexPath) {
 		print("Completed task at \(indexPath)");
-		print("Completed task title: \(tasksPendingCompletion[indexPath.row].taskTitle)");
+		print("Completed task title: \(TaskController.tasksPendingCompletion[indexPath.row].taskTitle)");
 
 	}
 	
