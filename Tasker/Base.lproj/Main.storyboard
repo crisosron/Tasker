@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Add Task View Controller-->
+        <!--Task Detail View Controller-->
         <scene sceneID="PsL-kb-4EI">
             <objects>
-                <viewController id="fH4-vy-XJN" customClass="AddTaskViewController" customModule="Tasker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fH4-vy-XJN" customClass="TaskDetailViewController" customModule="Tasker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1zf-wn-hcb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,7 +78,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                 </state>
                                 <connections>
-                                    <action selector="addTaskPressed:" destination="fH4-vy-XJN" eventType="touchUpInside" id="lMl-IG-vLq"/>
+                                    <action selector="operationButtonPressed:" destination="fH4-vy-XJN" eventType="touchUpInside" id="lMl-IG-vLq"/>
                                     <segue destination="HpX-Dk-BLO" kind="unwind" unwindAction="unwindToTodayTasksVCWithUnwindSegue:" id="RHg-FA-f1h"/>
                                 </connections>
                             </button>
@@ -124,6 +124,7 @@
                     <connections>
                         <outlet property="dateInputField" destination="pMv-IA-F1T" id="p3K-Ip-C4z"/>
                         <outlet property="endTimeInputField" destination="5hJ-8f-5Y5" id="C0I-KG-uOo"/>
+                        <outlet property="operationButton" destination="EIG-Vx-IsD" id="WDx-AX-uFJ"/>
                         <outlet property="priorityInputField" destination="eZP-YD-rvM" id="Ift-V5-p5N"/>
                         <outlet property="startTimeInputField" destination="lMl-lj-osg" id="s8D-ke-ymI"/>
                         <outlet property="taskTitleInputField" destination="KT8-44-f2R" id="Hw4-yO-38S"/>
@@ -153,14 +154,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="383" height="117"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="kHe-SR-1GJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Some Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="kHe-SR-1GJ">
                                                     <rect key="frame" x="20" y="11" width="161" height="31.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00am - 00:00pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deR-nX-ukx">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00am - 00:00pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="deR-nX-ukx">
                                                     <rect key="frame" x="20" y="45" width="153" height="23.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>

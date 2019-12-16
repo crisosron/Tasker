@@ -10,13 +10,13 @@ import Foundation;
 import UIKit;
 
 class Task{
-	var taskTitle: String;
-	var startTime: String;
+	var taskTitle: String
+	var startTime: String?
 	var endTime: String?
-	var taskPriority: String?;
-	var taskPriorityColor: UIColor?;
+	var taskPriority: String?
+	var taskPriorityColor: UIColor?
 	
-	init(taskTitle: String, startingAt startTime: String, endingAt endTime: String?, withPriority priority: String?){
+	init(taskTitle: String, startingAt startTime: String?, endingAt endTime: String?, withPriority priority: String?){
 		self.taskTitle = taskTitle
 		self.startTime = startTime
 		self.endTime = endTime

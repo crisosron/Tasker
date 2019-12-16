@@ -16,7 +16,7 @@ class DateTimeInputField: UIDatePicker {
 		self.field = field
 		super.init(frame: CGRect.zero)
 		super.datePickerMode = mode
-		self.addTarget(target, action: #selector(AddTaskViewController.dateTimePickerValueChanged(sender:)), for: .valueChanged)
+		self.addTarget(target, action: #selector(TaskDetailViewController.dateTimePickerValueChanged(sender:)), for: .valueChanged)
 	}
 	
 	required init?(coder: NSCoder) {

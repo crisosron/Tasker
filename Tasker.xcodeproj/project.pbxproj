@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8726BEDC2395DF7900AE236A /* SelectOptionInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726BEDB2395DF7900AE236A /* SelectOptionInputField.swift */; };
-		8726BEDE2395E43100AE236A /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726BEDD2395E43100AE236A /* AddTaskViewController.swift */; };
+		8726BEDE2395E43100AE236A /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726BEDD2395E43100AE236A /* TaskDetailViewController.swift */; };
 		8726BEE02395E7E500AE236A /* DateTimeInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8726BEDF2395E7E500AE236A /* DateTimeInputField.swift */; };
 		875B1EDD23A2215600C70EBF /* TaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875B1EDC23A2215600C70EBF /* TaskController.swift */; };
 		8760761E23933F6200D6BC84 /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8760761D23933F6200D6BC84 /* CheckButton.swift */; };
@@ -25,7 +25,7 @@
 
 /* Begin PBXFileReference section */
 		8726BEDB2395DF7900AE236A /* SelectOptionInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectOptionInputField.swift; sourceTree = "<group>"; };
-		8726BEDD2395E43100AE236A /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		8726BEDD2395E43100AE236A /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		8726BEDF2395E7E500AE236A /* DateTimeInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeInputField.swift; sourceTree = "<group>"; };
 		875B1EDC23A2215600C70EBF /* TaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskController.swift; sourceTree = "<group>"; };
 		8760761D23933F6200D6BC84 /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 				87B172DE238F637300D36B6E /* Task.swift */,
 				8760761D23933F6200D6BC84 /* CheckButton.swift */,
 				8726BEDB2395DF7900AE236A /* SelectOptionInputField.swift */,
-				8726BEDD2395E43100AE236A /* AddTaskViewController.swift */,
+				8726BEDD2395E43100AE236A /* TaskDetailViewController.swift */,
 				8726BEDF2395E7E500AE236A /* DateTimeInputField.swift */,
 				875B1EDC23A2215600C70EBF /* TaskController.swift */,
 			);
@@ -167,7 +167,7 @@
 				87B172CB238F604300D36B6E /* TodayTasksViewController.swift in Sources */,
 				87B172C7238F604300D36B6E /* AppDelegate.swift in Sources */,
 				87B172C9238F604300D36B6E /* SceneDelegate.swift in Sources */,
-				8726BEDE2395E43100AE236A /* AddTaskViewController.swift in Sources */,
+				8726BEDE2395E43100AE236A /* TaskDetailViewController.swift in Sources */,
 				87B172DF238F637300D36B6E /* Task.swift in Sources */,
 				875B1EDD23A2215600C70EBF /* TaskController.swift in Sources */,
 				87B172DD238F62C600D36B6E /* TaskCell.swift in Sources */,

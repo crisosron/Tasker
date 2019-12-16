@@ -29,7 +29,7 @@ class TaskCell: UITableViewCell {
 	*/
 	func setTask(task: Task){
 		taskTitleLabel.text = task.taskTitle;
-		taskTimeLabel.text = task.startTime + " - " + (task.endTime != nil ? task.endTime! : "")
+		taskTimeLabel.text = (task.startTime != nil ? task.startTime! : "No start specified") + " - " + (task.endTime != nil ? task.endTime! : "No end specified")
 		
 		// Displaying priority indication and text (if a priority value for the task has been set)
 		if let priorityValue = task.taskPriority{

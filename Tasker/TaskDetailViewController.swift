@@ -1,5 +1,5 @@
 //
-//  AddTaskViewController.swift
+//  TaskDetailViewController.swift
 //  Tasker
 //
 //  Created by Ron Crisostomo on 3/12/19.
@@ -8,15 +8,22 @@
 
 import UIKit
 
-class AddTaskViewController: UIViewController {
+class TaskDetailViewController: UIViewController {
 
 	@IBOutlet weak var priorityInputField: UITextField!
 	@IBOutlet weak var startTimeInputField: UITextField!
 	@IBOutlet weak var endTimeInputField: UITextField!
 	@IBOutlet weak var dateInputField: UITextField!
 	@IBOutlet weak var taskTitleInputField: UITextField!
+	@IBOutlet weak var operationButton: UIButton!
+	
+	enum Mode {
+		case ADD_TASK
+		case UPDATE_TASK
+	}
 	
 	var task: Task?
+	var mode: Mode!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +40,16 @@ class AddTaskViewController: UIViewController {
 		endTimeInputField.inputAccessoryView = toolBar
 		dateInputField.inputAccessoryView = toolBar
 		
+		
 		if task != nil{
 			loadTask()
+			operationButton.setTitle("Update Task", for: .normal)
+			mode = Mode.UPDATE_TASK
+			
 		}else{
 			loadDefaults()
+			operationButton.setTitle("Add Task", for: .normal);
+			mode = Mode.ADD_TASK
 		}
 		
     }
@@ -107,8 +120,17 @@ class AddTaskViewController: UIViewController {
 	}
 	
 	//MARK: IBActions
-	@IBAction func addTaskPressed(_ sender: UIButton) {
+	@IBAction func operationButtonPressed(_ sender: UIButton) {
 		// Reminder: The add task button is linked to an unwind action segue that dismisses this VC and leads back to TodayTasksVC (see unwind method in TodayTasksVC)
+		if(mode == Mode.ADD_TASK){
+			addTask();
+		}else{
+			updateTask();
+		}
+		
+	}
+	
+	func addTask(){
 		let taskTitle = taskTitleInputField.text
 		if(taskTitle == "") {return} // TODO: Do notification here
 		let taskStartTime = startTimeInputField.text
@@ -116,6 +138,25 @@ class AddTaskViewController: UIViewController {
 		let priority = priorityInputField.text
 		let task = Task(taskTitle: taskTitle!, startingAt: taskStartTime!, endingAt: taskEndTime, withPriority: priority)
 		TaskController.addTask(task)
+	}
+	
+	func updateTask(){
+		let taskTitle = taskTitleInputField.text
+		if(taskTitle == "") {return} // TODO: Do notification here
+		let taskStartTime = startTimeInputField.text
+		let taskEndTime = endTimeInputField.text
+		let priority = priorityInputField.text
+		
+		do{
+			let taskToModify = try TaskController.getTask(self.task!)
+			taskToModify.taskTitle = taskTitle!
+			taskToModify.startTime = taskStartTime
+			taskToModify.endTime = taskEndTime
+			taskToModify.taskPriority = priority
+		}catch {
+			print("Task not found")
+		}
+		
 	}
 }
 

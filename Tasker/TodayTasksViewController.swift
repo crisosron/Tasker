@@ -37,8 +37,8 @@ class TodayTasksViewController: UIViewController {
 	//MARK: Segue to AddTaskVC
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if(segue.identifier == "todayTasksToAddTask"){
-			let addTaskVC = segue.destination as! AddTaskViewController
-			addTaskVC.task = sender as? Task
+			let taskDetailVC = segue.destination as! TaskDetailViewController
+			taskDetailVC.task = sender as? Task
 		}
 	}
 }
