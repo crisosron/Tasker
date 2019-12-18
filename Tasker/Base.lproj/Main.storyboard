@@ -78,8 +78,8 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                 </state>
                                 <connections>
-                                    <action selector="operationButtonPressed:" destination="fH4-vy-XJN" eventType="touchUpInside" id="lMl-IG-vLq"/>
-                                    <segue destination="HpX-Dk-BLO" kind="unwind" unwindAction="unwindToTodayTasksVCWithUnwindSegue:" id="RHg-FA-f1h"/>
+                                    <action selector="operationButtonPressed:" destination="fH4-vy-XJN" eventType="touchUpInside" id="YqS-uX-ssS"/>
+                                    <segue destination="HpX-Dk-BLO" kind="unwind" identifier="unwindSegueFromTaskDetailToTodayTasks" unwindAction="unwindToTodayTasksVCWithUnwindSegue:" id="CVG-fa-i0R"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gj9-Sp-1pA">

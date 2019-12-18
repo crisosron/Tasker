@@ -32,6 +32,7 @@ class TodayTasksViewController: UIViewController {
 		// defined by UIViewController. Because of this, when the user unwinds from the AddTaskVC, we need to invoke
 		// viewDidAppear on this VC so we can conduct operations on todayTasksTableView inside viewDidAppear
 		self.viewDidAppear(true)
+		
 	}
 	
 	//MARK: Segue to AddTaskVC

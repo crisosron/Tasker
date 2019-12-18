@@ -22,6 +22,10 @@ class TaskDetailViewController: UIViewController {
 		case UPDATE_TASK
 	}
 	
+	enum TaskDetailException: Error{
+		case invalidTaskTitle
+	}
+	
 	var task: Task?
 	var mode: Mode!
 	
@@ -119,37 +123,76 @@ class TaskDetailViewController: UIViewController {
 		}
 	}
 	
-	//MARK: IBActions
-	@IBAction func operationButtonPressed(_ sender: UIButton) {
-		// Reminder: The add task button is linked to an unwind action segue that dismisses this VC and leads back to TodayTasksVC (see unwind method in TodayTasksVC)
-		if(mode == Mode.ADD_TASK){
-			addTask();
-		}else{
-			updateTask();
+	override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+		if(identifier == "unwindSegueFromTaskDetailToTodayTasks"){
+			if(taskTitleInputField.text == ""){
+				showAlert(withTitle: "Task Title", withMessage: "Please enter a task title to perform the operation")
+				return false
+			}
 		}
 		
+		return true
 	}
 	
-	func addTask(){
-		let taskTitle = taskTitleInputField.text
-		if(taskTitle == "") {return} // TODO: Do notification here
+	//MARK: IBActions
+	@IBAction func operationButtonPressed(_ sender: Any) {
+		// Handling precondition that the task title must not be empty
+		if(taskTitleInputField.text == ""){
+			return; // Note that the handling of this occurs in shouldPerformSegue method (shows an alert)
+		}
+		
+		if(mode == Mode.ADD_TASK){
+			do { try addTask() }
+			catch {
+				print("Invalid title input, aborting the addition of the new task")
+				return
+			}
+			
+		}else{
+			do { try updateTask() }
+			catch {
+				print("Unable to update task, aborting")
+				return
+			}
+		}
+	}
+	
+	func addTask() throws {
+		
+		// Enforcing precondition that taskTitle is not empty
+		guard let taskTitle = taskTitleInputField.text else{
+			throw TaskDetailException.invalidTaskTitle
+		}
+		if(taskTitle == ""){
+			throw TaskDetailException.invalidTaskTitle
+		}
+		
+		// Obtaining entered task detailts and adding a new task
 		let taskStartTime = startTimeInputField.text
 		let taskEndTime = endTimeInputField.text
 		let priority = priorityInputField.text
-		let task = Task(taskTitle: taskTitle!, startingAt: taskStartTime!, endingAt: taskEndTime, withPriority: priority)
+		let task = Task(taskTitle: taskTitle, startingAt: taskStartTime!, endingAt: taskEndTime, withPriority: priority)
 		TaskController.addTask(task)
 	}
 	
-	func updateTask(){
-		let taskTitle = taskTitleInputField.text
-		if(taskTitle == "") {return} // TODO: Do notification here
+	func updateTask() throws{
+		
+		// Enforcing precondition that taskTitle is not empty
+		guard let taskTitle = taskTitleInputField.text else{
+			throw TaskDetailException.invalidTaskTitle
+		}
+		if(taskTitle == ""){
+			throw TaskDetailException.invalidTaskTitle
+		}
+		
+		// Obtaining task details and updating the task
 		let taskStartTime = startTimeInputField.text
 		let taskEndTime = endTimeInputField.text
 		let priority = priorityInputField.text
 		
 		do{
 			let taskToModify = try TaskController.getTask(self.task!)
-			taskToModify.taskTitle = taskTitle!
+			taskToModify.taskTitle = taskTitle
 			taskToModify.startTime = taskStartTime
 			taskToModify.endTime = taskEndTime
 			taskToModify.taskPriority = priority
@@ -157,6 +200,13 @@ class TaskDetailViewController: UIViewController {
 			print("Task not found")
 		}
 		
+	}
+	
+	func showAlert(withTitle title: String, withMessage message: String){
+		let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert);
+		let okButton = UIAlertAction(title: "OK", style: .default){(action) in /*Code to execute when ok button pressed*/};
+		alertController.addAction(okButton);
+		self.present(alertController, animated:true, completion: nil);
 	}
 }
 
